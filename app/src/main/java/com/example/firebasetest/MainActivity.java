@@ -35,7 +35,12 @@ public class MainActivity extends AppCompatActivity {
 
     Button add, remove, get;
 
-    TextView data_output;
+    //TextView data_output;
+
+    Button AddEvent;
+
+    TextView aboutUs;
+
 
     @Override
     protected void onStart() {
@@ -65,6 +70,30 @@ public class MainActivity extends AppCompatActivity {
         DatabaseReference myRef = database.getReference("User");
         myRef.setValue("Helloo world!");
 
+
+        Button openMaps_btn = (Button) findViewById(R.id.btn_maps);
+        openMaps_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this, MapsActivity.class);
+                startActivity(i);
+            }
+        });
+
+        AddEvent = (Button) findViewById(R.id.add_btn);
+        AddEvent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this, MainActivity.class);
+                startActivity(i);
+            }
+        });
+        aboutUs = findViewById(R.id.txt_about_us);
+        aboutUs.setText("We were inspired to create She Connects in order to combat gender inequality " +
+                "in NI today. Our app will serve as a central space for women's groups and support networks. It will feature a \n" +
+                "comprehensive directory of available women's groups and support organisations, making it easier \n" +
+                "for women and girls to connect, share experiences, and access vital resources. ");
+
         SignOut = (Button) findViewById(R.id.btn_signOut);
         SignOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,21 +103,20 @@ public class MainActivity extends AppCompatActivity {
         });
 
         data_input = (EditText) findViewById(R.id.data_txt);
-        data_output = (TextView) findViewById(R.id.output_txt);
+        //data_output = (TextView) findViewById(R.id.output_txt);
 
         add = (Button) findViewById(R.id.add_btn);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
+            public void onClick(View view) {
                 String data = data_input.getText().toString();
                 myRef.setValue(data);
             }
         });
-
-
     }
 
-    public void createSignInIntent(){
+
+    public void createSignInIntent() {
         List<AuthUI.IdpConfig> providers = Arrays.asList(
                 new AuthUI.IdpConfig.EmailBuilder().build(),
                 new AuthUI.IdpConfig.GoogleBuilder().build(),
@@ -101,17 +129,17 @@ public class MainActivity extends AppCompatActivity {
         signInLauncher.launch(signInIntent);
     }
 
-    private void onSignInResult(FirebaseAuthUIAuthenticationResult result){
+    private void onSignInResult(FirebaseAuthUIAuthenticationResult result) {
         IdpResponse response = result.getIdpResponse();
-        if(result.getResultCode()==RESULT_OK){
+        if (result.getResultCode() == RESULT_OK) {
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             Toast.makeText(this, user.getEmail(), Toast.LENGTH_SHORT).show();
-        }else{
+        } else {
             Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void signOut(){
+    private void signOut() {
         AuthUI.getInstance()
                 .signOut(this)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
