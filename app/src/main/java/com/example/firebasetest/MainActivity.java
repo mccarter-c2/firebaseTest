@@ -33,6 +33,11 @@ public class MainActivity extends AppCompatActivity {
 
     EditText data_input;
 
+    EditText time_input;
+
+    EditText name_input;
+
+    EditText date_input;
     Button add, remove, get;
 
     //TextView data_output;
@@ -67,7 +72,11 @@ public class MainActivity extends AppCompatActivity {
         createSignInIntent();
 
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://fir-test-775d0-default-rtdb.europe-west1.firebasedatabase.app/");
-        DatabaseReference myRef = database.getReference("User");
+        DatabaseReference myRef = database.getReference("Event");
+        DatabaseReference myRef1 = myRef.child("Location");
+        DatabaseReference myRef2 = myRef.child("Name");
+        DatabaseReference myRef3= myRef.child("Date");
+        DatabaseReference myRef4= myRef.child("Time");
         myRef.setValue("Helloo world!");
 
 
@@ -80,14 +89,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        AddEvent = (Button) findViewById(R.id.add_btn);
-        AddEvent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, MainActivity.class);
-                startActivity(i);
-            }
-        });
+//        AddEvent = (Button) findViewById(R.id.add_btn);
+//        AddEvent.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent i = new Intent(MainActivity.this, MapsActivity.class);
+//                startActivity(i);
+//            }
+//        });
         aboutUs = findViewById(R.id.txt_about_us);
         aboutUs.setText("We were inspired to create She Connects in order to combat gender inequality " +
                 "in NI today. Our app will serve as a central space for women's groups and support networks. It will feature a \n" +
@@ -103,6 +112,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         data_input = (EditText) findViewById(R.id.data_txt);
+///CHNAGEEEEEEEEEE ANS REPLICATE
+        name_input = (EditText) findViewById(R.id.name_txt);
+        date_input = (EditText) findViewById(R.id.date_txt);
+        time_input = (EditText) findViewById(R.id.time_txt);
         //data_output = (TextView) findViewById(R.id.output_txt);
 
         add = (Button) findViewById(R.id.add_btn);
@@ -110,7 +123,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String data = data_input.getText().toString();
-                myRef.setValue(data);
+                myRef1.setValue(data);
+                String data1 = name_input.getText().toString();
+                myRef2.setValue(data1);
+                String data2 = date_input.getText().toString();
+                myRef3.setValue(data2);
+                String data3 = time_input.getText().toString();
+                myRef4.setValue(data2);
             }
         });
     }
