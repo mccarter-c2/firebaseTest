@@ -46,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
 
     TextView aboutUs;
 
+    public static final String locationMessage = "";
+
 
     @Override
     protected void onStart() {
@@ -112,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         data_input = (EditText) findViewById(R.id.data_txt);
-///CHNAGEEEEEEEEEE ANS REPLICATE
+
         name_input = (EditText) findViewById(R.id.name_txt);
         date_input = (EditText) findViewById(R.id.date_txt);
         time_input = (EditText) findViewById(R.id.time_txt);
@@ -130,6 +132,11 @@ public class MainActivity extends AppCompatActivity {
                 myRef3.setValue(data2);
                 String data3 = time_input.getText().toString();
                 myRef4.setValue(data2);
+                String submitEvent = ((EditText) findViewById(R.id.data_txt)).getText().toString();
+                Intent i = new Intent(MainActivity.this, MapsActivity.class);
+                i.putExtra(locationMessage, submitEvent);
+                startActivity(i);
+
             }
         });
     }

@@ -61,8 +61,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         try{
 
             Intent i = getIntent();
-            //String placeName = i.getStringExtra(EventActivity.locationMessage);//""; //address Foyle Women's Aid - put in address from add event database
-            String placeName = "Foyle Women's Aid"; //This makes add events work
+            String placeName = i.getStringExtra(MainActivity.locationMessage);//""; //address Foyle Women's Aid - put in address from add event database
+           //String placeName = "Foyle Women's Aid"; //This makes add events work
             List<Address> addresses = geoCoder.getFromLocationName(placeName,1);
             Address address = addresses.get(0);
             if (addresses.size() > 0){
