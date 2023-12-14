@@ -101,9 +101,8 @@ public class MainActivity extends AppCompatActivity {
 //        });
         aboutUs = findViewById(R.id.txt_about_us);
         aboutUs.setText("We were inspired to create She Connects in order to combat gender inequality " +
-                "in NI today. Our app will serve as a central space for women's groups and support networks. It will feature a \n" +
-                "comprehensive directory of available women's groups and support organisations, making it easier \n" +
-                "for women and girls to connect, share experiences, and access vital resources. ");
+                "in NI today. Our app will serve as a central space for women's groups and support networks, making it easier " +
+                "for women and girls to connect and share experiences.");
 
         SignOut = (Button) findViewById(R.id.btn_signOut);
         SignOut.setOnClickListener(new View.OnClickListener() {

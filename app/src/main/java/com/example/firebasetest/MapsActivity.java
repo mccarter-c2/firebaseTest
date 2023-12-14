@@ -61,22 +61,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         try{
 
             Intent i = getIntent();
-            //String placeName = i.getStringExtra(MainActivity.locationMessage);//""; //address Foyle Women's Aid - put in address from add event database
-            String placeName = "Foyle Women's Aid"; //This makes add events work
-            List<Address> addresses = geoCoder.getFromLocationName(placeName,1);
-            Address address = addresses.get(0);
-            if (addresses.size() > 0){
-                LatLng p = new LatLng(address.getLatitude(), address.getLongitude());
-                mMap.addMarker(new MarkerOptions().position(p).title(placeName));
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(p,12.0f));
-            }
-        } catch (IOException e){
-            e.printStackTrace();
-        } try{
-
-            Intent i = getIntent();
-            //String placeName = i.getStringExtra(MainActivity.locationMessage);//""; //address Foyle Women's Aid - put in address from add event database
-            String placeName = "Women's Centre Derry"; //This makes add events work
+            String placeName = i.getStringExtra(MainActivity.locationMessage);//""; //address Foyle Women's Aid - put in address from add event database
+           //String placeName = "Foyle Women's Aid"; //This makes add events work
             List<Address> addresses = geoCoder.getFromLocationName(placeName,1);
             Address address = addresses.get(0);
             if (addresses.size() > 0){
@@ -87,22 +73,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         } catch (IOException e){
             e.printStackTrace();
         }
-        try{
-
-            Intent i = getIntent();
-            //String placeName = i.getStringExtra(MainActivity.locationMessage);//""; //address Foyle Women's Aid - put in address from add event database
-            String placeName = "La Dolce Vita Project"; //This makes add events work
-            List<Address> addresses = geoCoder.getFromLocationName(placeName,1);
-            Address address = addresses.get(0);
-            if (addresses.size() > 0){
-                LatLng p = new LatLng(address.getLatitude(), address.getLongitude());
-                mMap.addMarker(new MarkerOptions().position(p).title(placeName));
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(p,12.0f));
-            }
-        } catch (IOException e){
-            e.printStackTrace();
-        }
-
 
 
         // converts lat and lng into address
